@@ -32,13 +32,15 @@ export const getOperation = (id) => getDoc(doc(db, collectionName, id));
 export const getTokens = () =>
   fetch(
     "https://api.nomics.com/v1/currencies/ticker?key=738352bbe129b05bccb9929efc3f4fd1ea2a2419&per-page=100&page=1",
-    {    
+    {
+      headers: {
+        mode: "cors",
         headers: {
-	        'mode': 'cors',
-	        'headers': {
-            	'Access-Control-Allow-Origin': '*',
-        	},
-    })
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    }
+  )
     .then((response) => response.json())
     .then((data) => {
       return data;
