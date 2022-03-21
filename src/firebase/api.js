@@ -9,6 +9,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "./config";
+import axios from "axios";
 
 const collectionName = "operations";
 
@@ -31,18 +32,9 @@ export const getOperation = (id) => getDoc(doc(db, collectionName, id));
 
 export const getTokens = () =>
   fetch(
-    "https://api.nomics.com/v1/currencies/ticker?key=738352bbe129b05bccb9929efc3f4fd1ea2a2419&per-page=100&page=1",
-    {
-      headers: {
-        mode: "no-cors",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      },
-    }
+    "https://api.nomics.com/v1/currencies/ticker?key=738352bbe129b05bccb9929efc3f4fd1ea2a2419&per-page=100&page=1"
   )
     .then((response) => response.json())
     .then((data) => {
       return data;
     });
-
